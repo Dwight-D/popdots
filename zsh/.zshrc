@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dwightd"
+#ZSH_THEME="dwightd"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -69,7 +77,7 @@ ZSH_THEME="dwightd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autocomplete git colored-man-pages vim-mode docker)
+plugins=(zsh-autocomplete git colored-man-pages docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,13 +107,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # The following lines were added by compinstall
+zstyle :compinstall filename "$HOME/.zshrc"
 
-zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' menu select=0
-zstyle ':completion:*' original false
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle :compinstall filename '/home/millions/.zshrc'
+#zstyle ':completion:*' insert-unambiguous true
+#zstyle ':completion:*' list-colors ''
+#zstyle ':completion:*' menu select=0
+#zstyle ':completion:*' original false
+#zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+
+zstyle ':autocomplete:tab:*' completion insert
+zstyle ':autocomplete:(slash|space):*' magic 'off'
+zstyle ':autocomplete:list-choices:*' min-input 3
 
 autoload -Uz compinit
 compinit
@@ -129,3 +141,6 @@ bindkey -v
 
 eval $(ssh-agent) &>/dev/null
 ssh-add .ssh/github_key &>/dev/null
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

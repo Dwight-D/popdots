@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autocomplete git colored-man-pages docker)
+plugins=(zsh-autosuggestions git fast-syntax-highlighting zsh-vim-mode colored-man-pages docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,17 +107,13 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # The following lines were added by compinstall
-zstyle :compinstall filename "$HOME/.zshrc"
 
-#zstyle ':completion:*' insert-unambiguous true
-#zstyle ':completion:*' list-colors ''
-#zstyle ':completion:*' menu select=0
-#zstyle ':completion:*' original false
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' menu select=0
+zstyle ':completion:*' original false
 #zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-
-zstyle ':autocomplete:tab:*' completion insert
-zstyle ':autocomplete:(slash|space):*' magic 'off'
-zstyle ':autocomplete:list-choices:*' min-input 3
+zstyle :compinstall filename "$HOME/.zshrc"
 
 autoload -Uz compinit
 compinit
@@ -138,6 +134,11 @@ bindkey -v
 #zle -N down-line-or-beginning-search
 #bindkey '^[[A' up-line-or-beginning-search # Up
 #bindkey '^[[B' down-line-or-beginning-search # Down
+
+zstyle ':autocomplete:tab:*' completion insert
+zstyle ':autocomplete:(slash|space):*' magic 'off'
+zstyle ':autocomplete:list-choices:*' min-input 3
+source $HOME/scripts/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 eval $(ssh-agent) &>/dev/null
 ssh-add .ssh/github_key &>/dev/null

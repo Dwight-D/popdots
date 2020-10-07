@@ -138,10 +138,12 @@ bindkey -v
 zstyle ':autocomplete:tab:*' completion insert
 zstyle ':autocomplete:(slash|space):*' magic 'off'
 zstyle ':autocomplete:list-choices:*' min-input 3
+zstyle ':autocomplete:*' recent-dirs off
 source $HOME/scripts/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 eval $(ssh-agent) &>/dev/null
-ssh-add .ssh/github_key &>/dev/null
+ssh-add ~/.ssh/github_key &>/dev/null
+ssh-add ~/.ssh/github_new &>/dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -1,0 +1,7 @@
+[user]
+	name = Max Forsman
+	email = forsman.max@protonmail.com
+[alias]
+	st = status
+	ci = commit -m
+	co = commit -m
